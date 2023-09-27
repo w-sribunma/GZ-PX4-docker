@@ -12,6 +12,11 @@ if [ ! -d ./work/ros2_ws/src ] ; then
     cd work/ros2_ws/src
     git clone git@github.com:PX4/px4_msgs.git
     git clone git@github.com:Jaeyoung-Lim/px4-offboard.git
+    # git clone git@github.com:w-sribunma/auav_sample_f23.git #ROS2 sample solution package
     git clone -b humble git@github.com:gazebosim/ros_gz.git
 fi
 
+if [ ! -d ./work/ros2_ws/src/navigation2 ] ; then
+    cd work/ros2_ws/src
+    git clone git@github.com:ros-planning/navigation2.git
+fi
