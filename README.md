@@ -33,7 +33,7 @@ Terminal 1: `docker exec -u user -it px4_gz-px4_gz-1 terminator`\
 To start px4_sitl and ros2 offboard control, split each terminator into 3 panels and run
 
 1. `cd px4 && make px4_sitl` to build px4_sitl first. (This only need to be built once in one of the container shells)\
-`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL=x500 ./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 in gz-garden.\
+`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL=x500_lidar ./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 with added lidar plugin in gz-garden. (PX4_GZ_MODEL=x500 to run base x500 model)\
 
 2. `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2\
 
