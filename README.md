@@ -37,6 +37,12 @@ To start px4_sitl and ros2 offboard control, split each terminator into 3 panels
 
 2. `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2\
 
+### Running PX4-offboard
+1. `cd ros2_ws && colcon build` to build ros2 workspace
+
+2. `source install/setup.bash` to source the ros2 environment
+
+3. From the built repository under px4_offboard, to run the offboard script, run `ros2 run px4_offboard [script name]` to communicate between the gazebo and ros2 envrionment and use offboard controls with px4.
 
 ### Environment Variables
 - `PX4_GZ_MODEL` Name of the px4 vehicle model to spawn in gz
