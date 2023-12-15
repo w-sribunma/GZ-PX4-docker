@@ -19,12 +19,14 @@ Please build ros_gz from source. [see ros-gz](https://github.com/gazebosim/ros_g
 
 ### Build and run
 To build the image
-
-`docker compose build`
-
+```bash
+docker compose build
+```
 To run multiple drones
 
-`./run_dev.sh`
+```bash
+./run_dev.sh
+```
 
 To access the shell of each service, in two different terminals run
 
@@ -50,3 +52,35 @@ To start px4_sitl and ros2 offboard control, split each terminator into 3 panels
 - `PX4_MICRODDS_NS` Namespace assigned to the sitl vehicle, normally associated with px4 instances, but can be set mannually
 - `ROS_DOMAIN_ID` Separate each container into its own domain (Is it still necessary since each SITL instance has a unique namespace?)
   
+### Drivers and Supporting Software
+Tested versions:
+- Ros: `Rolling`
+- Gazebo: `Garden`
+- Docker: `24.0.7`
+
+#### Install Docker CLI
+- Install Docker CLI using the instructions on the [Docker Installation Page](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository).
+- Note: Docker Desktop may interfere with Nvidia Drivers.
+
+#### Nvidia Drivers
+- Automatically install recommended drivers:
+  ```bash
+  sudo ubuntu-drivers autoinstall
+  ```
+- Manually install recommended drivers:
+  `ubuntu-drivers devices` To list recommended drivers
+  ```bash
+    sudo apt install nvidia-driver-<version>
+    ```
+- Nvidia Container Toolkit
+    if encountering a ‘nvidia-container-cli’ initialization error, refer to the [Nvidia Container Toolkit Installation Guide](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+#### Debugging
+- If encountering an error related to “actuator_msgs” during docker build:
+    - Include [actuator_msg](https://github.com/rudislabs/actuator_msgs) package from source
+
+
+### Resources
+- PX4 with ROS-Gazebo simulation overview: [PX4 Dev Guide](https://dev.px4.io/master/en/simulation/ros_interface.html)
+- Previous Spring 2022 IEEE Autonomous UAV "Drone" Chase Challenge - [Video](https://www.youtube.com/watch?v=uISFK83FSmQ&ab_channel=JamesGoppert)
+- Issues Tracking: [Github Issues]
