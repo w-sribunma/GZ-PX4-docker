@@ -3,7 +3,10 @@ Docker files needed to build images for px4_sitl simulation in ROS2 and Gazebo
 
 The `./work` directory setup 
 
-run `./get_src.sh` to clone each repo and add AbuDhabi model to px4 gz world (probably will set up submodules soon)
+run `./get_src.sh` to clone each repo and add model to px4 gz world
+
+Additional backup trial maze world is located in the /work/models/maze_sample directory
+
 ```
 work/
 ┣ px4/
@@ -54,7 +57,7 @@ To start px4_sitl and ros2 offboard control, split each terminator into 3 panels
   
 ### Drivers and Supporting Software
 Tested versions:
-- Ros: `Rolling`
+- Ros: `Rolling` nad `Humble`
 - Gazebo: `Garden`
 - Docker: `24.0.7`
 
