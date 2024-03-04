@@ -33,12 +33,12 @@ To run multiple drones
 
 To access the shell of each service, in two different terminals run
 
-Terminal 1: `docker exec -u user -it px4_gz-px4_gz-1 terminator`\
+Terminal 1: `docker exec -u user -it px4_gz-px4_gz-1 terminator`
 
 To start px4_sitl and ros2 offboard control, split each terminator into 3 panels and run
 
 1. `cd px4 && make px4_sitl` to build px4_sitl first. (This only need to be built once in one of the container shells)\
-`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL=x500_lidar PX4_GZ_WORLD=maze_sample./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 with added lidar plugin in gz-garden on a sample maze model. (PX4_GZ_MODEL=x500 to run base x500 model)\
+`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL=x500_lidar PX4_GZ_WORLD=maze_sample./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 with added lidar plugin in gz-garden on a sample maze model (PX4_GZ_MODEL=x500 to run base x500 model). The 'PX4_GZ_WORLD' is a variable that can be set to the name of the world file to be used (options are: maze15x15_2openside, maze15x15_3openside, maze15x15_4openside, maze20ftx20ft_2openside, maze20ftx20ft_3openside, maze20ftx20ft_4openside).
 
 2. `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2\
 
