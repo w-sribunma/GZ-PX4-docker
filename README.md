@@ -37,8 +37,8 @@ Terminal 1: `docker exec -u user -it px4_gz-px4_gz-1 terminator`\
 
 To start px4_sitl and ros2 offboard control, split each terminator into 3 panels and run
 
-1. `cd px4 && make px4_sitl` to build px4_sitl first. (This only need to be built once in one of the container shells)\
-`PX4_SYS_AUTOSTART=4001 PX4_GZ_MODEL=x500_lidar PX4_GZ_WORLD=maze_sample./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 with added lidar plugin in gz-garden on a sample maze model. (PX4_GZ_MODEL=x500 to run base x500 model)\
+1. `cd px4 && make px4_sitl gz_x500_maze` to build px4_sitl first. (This only need to be built once in one of the container shells)\
+`PX4_SYS_AUTOSTART=4001 PX4_SIM_MODEL=x500 PX4_GZ_WORLD=maze ./build/px4_sitl_default/bin/px4 -i 1` to start px4_sitl instance 1 with x500 with added lidar plugin in gz-garden on a sample maze model. (PX4_SIM_MODEL=x500 to run basic x500 model)\
 
 2. `MicroXRCEAgent udp4 -p 8888` to start DDS agent for communication with ROS2\
 
@@ -50,11 +50,17 @@ To start px4_sitl and ros2 offboard control, split each terminator into 3 panels
 3. From the built repository under px4_offboard, to run the offboard script, run `ros2 run px4_offboard [script name]` to communicate between the gazebo and ros2 envrionment and use offboard controls with px4.
 
 ### Environment Variables
-- `PX4_GZ_MODEL` Name of the px4 vehicle model to spawn in gz
+- `PX4_SIM_MODEL` Name of the px4 vehicle model to spawn in gz
 - `PX4_GZ_MODEL_POSE` Spawn pose of the vehicle model, must used with `PX4_GZ_MODEL`
 - `PX4_MICRODDS_NS` Namespace assigned to the sitl vehicle, normally associated with px4 instances, but can be set mannually
 - `ROS_DOMAIN_ID` Separate each container into its own domain (Is it still necessary since each SITL instance has a unique namespace?)
-  
+
+### Adding new world
+To add new world models
+1. Navigate to `work/px4/Tools/simulation/gz/worlds` and add your custom sdf file format here. Our reference maze model utilize fuel to create downloads for the world model.
+2. Navigate to `work/px4/src/modules/simulation/gz_bridge/CMakeLists.txt` and add the maze world name under `set(gz_worlds )` (add the world name)
+3. Rebuild the px4 directory using `cd px4 && make px4_sitl gz_x500_[WORLD NAME]` (you may need to delete previous build inside `/build` directory)
+
 ### Drivers and Supporting Software
 Tested versions:
 - Ros: `Rolling` nad `Humble`
